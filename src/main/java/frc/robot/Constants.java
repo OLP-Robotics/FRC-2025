@@ -22,7 +22,7 @@ public final class Constants {
         COTSTalonFXSwerveConstants.SDS.MK4.KrakenX60(COTSTalonFXSwerveConstants.SDS.MK4.driveRatios.L2);
 
         /* Drivetrain Constants */
-        public static final double trackWidth = Units.inchesToMeters(24.5); //TODO: This must be tuned to specific robot
+        public static final double trackWidth = Units.inchesToMeters(19); //TODO: This must be tuned to specific robot
         public static final double wheelBase = Units.inchesToMeters(24.5); //TODO: This must be tuned to specific robot
         public static final double wheelCircumference = chosenModule.wheelCircumference;
 
@@ -67,7 +67,7 @@ public final class Constants {
         public static final double angleKD = chosenModule.angleKD;
 
         /* Drive Motor PID Values */
-        public static final double driveKP = 0.12; //TODO: This must be tuned to specific robot
+        public static final double driveKP = 0.75; //TODO: This must be tuned to specific robot: DONE
         public static final double driveKI = 0.0;
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
@@ -79,7 +79,7 @@ public final class Constants {
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static final double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
+        public static final double maxSpeed = 3.33; //TODO: This must be tuned to specific robot
         /** Radians per Second */
         public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
 
@@ -103,7 +103,7 @@ public final class Constants {
         }
 
         /* Front Right Module - Module 1 */
-        // labeled as 2
+        // labeled as 2 --> its backwards
         public static final class Mod1 { //TODO: This must be tuned to specific robot
             public static final int driveMotorID = 12;
             public static final int angleMotorID = 13;
