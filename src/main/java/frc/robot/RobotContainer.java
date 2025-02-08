@@ -20,6 +20,7 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
+    private final Joystick co_driver = new Joystick(1);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -29,9 +30,12 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    /* Co_Driver Buttons */
+    private final JoystickButton controlFunnel = new JoystickButton(driver, XboxController.Button.kX.value);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
+    private final Funnel s_Funnel = new Funnel();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -43,6 +47,13 @@ public class RobotContainer {
                 () -> -driver.getRawAxis(strafeAxis), 
                 () -> -driver.getRawAxis(rotationAxis), 
                 () -> robotCentric.getAsBoolean()
+            )
+        );
+
+        s_Funnel.setDefaultCommand(
+            new Mechanisms(
+                s_Funnel,
+                () -> controlFunnel.getAsBoolean()
             )
         );
 
