@@ -13,6 +13,8 @@ public class Mechanisms extends Command{
 
     public Mechanisms(Funnel s_Funnel, BooleanSupplier funnelSup){
         this.s_Funnel = s_Funnel;
+        addRequirements(s_Funnel);
+
         this.funnelSup = funnelSup;
     }
 

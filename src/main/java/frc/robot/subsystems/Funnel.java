@@ -13,8 +13,8 @@ public class Funnel extends SubsystemBase {
 
     public void activate(boolean xButtonPressed) {
         if (xButtonPressed) {
-            firstFunnelMotor.set(ControlMode.PercentOutput, -fullSpeed);
-            secondFunnelMotor.set(ControlMode.PercentOutput, -fullSpeed);
+            firstFunnelMotor.set(ControlMode.PercentOutput, fullSpeed);
+            secondFunnelMotor.set(ControlMode.PercentOutput, fullSpeed);
         } else if (!xButtonPressed) {
             firstFunnelMotor.set(ControlMode.PercentOutput, 0);
             secondFunnelMotor.set(ControlMode.PercentOutput, 0);
