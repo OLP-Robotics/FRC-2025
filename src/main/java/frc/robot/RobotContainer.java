@@ -32,10 +32,15 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     /* Co_Driver Buttons */
     private final JoystickButton controlFunnel = new JoystickButton(co_driver, XboxController.Button.kX.value);
+    private final JoystickButton controlIntake = new JoystickButton(co_driver, XboxController.Axis.kRightTrigger.value);
+    private final JoystickButton controlElevator = new JoystickButton(co_driver, XboxController.Button.kLeftStick.value);
+
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
     private final Funnel s_Funnel = new Funnel();
+    private final Arm s_Arm = new Arm();
+    private final Elevator s_Elevator = new Elevator();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -56,6 +61,18 @@ public class RobotContainer {
                 () -> controlFunnel.getAsBoolean()
             )
         );
+
+        s_Arm.setDefaultCommand(
+            new Mechanisms(
+             s_Arm,
+                () -> controlIntake.getAsBoolean()
+            )
+        );
+
+        s_Elevator.setDefaultCommand(
+            new Mechanisms(s_Funnel, controlFunnel, s_Arm, controlFunnel, s_Elevator, controlElevator)
+        );
+
 
         // Configure the button bindings
         configureButtonBindings();

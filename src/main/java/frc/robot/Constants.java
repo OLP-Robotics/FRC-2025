@@ -66,21 +66,21 @@ public final class Constants {
         public static final double angleKI = chosenModule.angleKI;
         public static final double angleKD = chosenModule.angleKD;
         /* Drive Motor PID Values */
-        public static final double driveKP = 1; //TODO: This must be tuned to specific robot:
+        public static final double driveKP = 4; //TODO: This must be tuned to specific robot:
         public static final double driveKI = 0.0;
         public static final double driveKD = 0.0;
         public static final double driveKF = 0.0;
 
         /* Drive Motor Characterization Values From SYSID */
-        public static final double driveKS = 0.32; //TODO: This must be tuned to specific robot
+        public static final double driveKS = 0.5; //TODO: This must be tuned to specific robot
         public static final double driveKV = 1.51;
-        public static final double driveKA = 0.27;
+        public static final double driveKA = 0.7;
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static final double maxSpeed = 3.33; //TODO: This must be tuned to specific robot
+        public static final double maxSpeed = 2.62; //TODO: This must be tuned to specific robot
         /** Radians per Second */
-        public static final double maxAngularVelocity = 10.0; //TODO: This must be tuned to specific robot
+        public static final double maxAngularVelocity = 1.5; //TODO: This must be tuned to specific robot
 
         /* Neutral Modes */
         public static final NeutralModeValue angleNeutralMode = NeutralModeValue.Coast;
