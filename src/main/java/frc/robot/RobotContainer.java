@@ -33,7 +33,11 @@ public class RobotContainer {
     /* Co_Driver Buttons */
     private final JoystickButton controlFunnel = new JoystickButton(co_driver, XboxController.Button.kX.value);
     private final JoystickButton controlIntake = new JoystickButton(co_driver, XboxController.Axis.kRightTrigger.value);
-    private final JoystickButton controlElevator = new JoystickButton(co_driver, XboxController.Button.kLeftStick.value);
+    // private final JoystickButton controlIntake2 = new JoystickButton(co_driver, XboxController.Axis.kLeftTrigger.value);
+
+
+    /* Co_Driver Controls */
+    private final int controlElevator = XboxController.Axis.kLeftY.value;
 
 
     /* Subsystems */
@@ -56,21 +60,24 @@ public class RobotContainer {
         );
 
         s_Funnel.setDefaultCommand(
-            new Mechanisms(
+            new TeleopFunnel(
                 s_Funnel,
                 () -> controlFunnel.getAsBoolean()
             )
         );
 
         s_Arm.setDefaultCommand(
-            new Mechanisms(
+            new TeleopArm(
              s_Arm,
                 () -> controlIntake.getAsBoolean()
             )
         );
 
         s_Elevator.setDefaultCommand(
-            new Mechanisms(s_Funnel, controlFunnel, s_Arm, controlFunnel, s_Elevator, controlElevator)
+            new TeleopElevator(
+            s_Elevator,
+             () -> co_driver.getRawAxis(controlElevator)
+            )
         );
 
 

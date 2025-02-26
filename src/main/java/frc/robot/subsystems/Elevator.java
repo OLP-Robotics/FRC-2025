@@ -11,11 +11,11 @@ public class Elevator extends SubsystemBase {
     
     private double fullSpeed = 1;
 
-    public void activate(boolean kLeftStick) {
-        if (kLeftStick) {
+    public void activate(double kLeftY) {
+        if (kLeftY > 0) {
             firstElevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
             secondELevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
-        } else if (!kLeftStick) {
+        } else if (kLeftY < 0) {
             firstElevatorMotor.set(ControlMode.PercentOutput, 0);
             secondELevatorMotor.set(ControlMode.PercentOutput, 0);
         }
