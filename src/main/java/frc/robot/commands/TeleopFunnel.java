@@ -7,20 +7,23 @@ import frc.robot.subsystems.Funnel;
 
 public class TeleopFunnel extends Command{
     private Funnel s_Funnel;
-    private BooleanSupplier funnelSup;
+    private BooleanSupplier funnelSupForward;
+    private BooleanSupplier funnelSupReverse;
 
-    public TeleopFunnel(Funnel s_Funnel, BooleanSupplier funnelSup){
+    public TeleopFunnel(Funnel s_Funnel, BooleanSupplier funnelSupForward, BooleanSupplier funnelSupReverse){
         this.s_Funnel = s_Funnel;
 
         addRequirements(s_Funnel);
 
-        this.funnelSup = funnelSup;
+        this.funnelSupForward = funnelSupForward;
+        this.funnelSupReverse = funnelSupReverse;
     }
 
     @Override
     public void execute() {
         s_Funnel.activate(
-            funnelSup.getAsBoolean()
+            funnelSupForward.getAsBoolean(),
+            funnelSupReverse.getAsBoolean()
         );
     }
 }

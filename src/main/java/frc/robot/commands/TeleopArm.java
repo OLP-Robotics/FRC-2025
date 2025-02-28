@@ -8,20 +8,23 @@ import frc.robot.subsystems.Arm;
 public class TeleopArm extends Command{
 
     private Arm s_Arm;
-    private BooleanSupplier armSup;
+    private BooleanSupplier armSupForward;
+    private BooleanSupplier armSupReverse;
 
-    public TeleopArm(Arm s_Arm, BooleanSupplier armSup){
+    public TeleopArm(Arm s_Arm, BooleanSupplier armSupForward, BooleanSupplier armSupReverse){
         this.s_Arm = s_Arm;
 
         addRequirements(s_Arm);
 
-        this.armSup = armSup;
+        this.armSupForward = armSupForward;
+        this.armSupReverse = armSupReverse;
     }
 
     @Override
     public void execute() {
         s_Arm.activate(
-            armSup.getAsBoolean()
+            this.armSupForward.getAsBoolean(),
+            this.armSupReverse.getAsBoolean()
         );
     }
 }

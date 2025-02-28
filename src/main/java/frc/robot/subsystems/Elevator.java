@@ -15,19 +15,19 @@ public class Elevator extends SubsystemBase {
     public void activate(double kLeftY) {
         if (kLeftY > 0.5) {
             firstElevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
+            secondELevatorMotor.set(ControlMode.PercentOutput, -fullSpeed);
         } else if (kLeftY > 0 && kLeftY <= 0.5) {
             firstElevatorMotor.set(ControlMode.PercentOutput, halfSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, halfSpeed);
+            secondELevatorMotor.set(ControlMode.PercentOutput, -halfSpeed);
         } else if (kLeftY == 0) {
             firstElevatorMotor.set(ControlMode.PercentOutput, 0);
             secondELevatorMotor.set(ControlMode.PercentOutput, 0);
         } else if (kLeftY < 0 && kLeftY >= -0.5) {
             firstElevatorMotor.set(ControlMode.PercentOutput, -halfSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, -halfSpeed);
+            secondELevatorMotor.set(ControlMode.PercentOutput, halfSpeed);
         } else if (kLeftY > -1 && kLeftY < -0.5) {
             firstElevatorMotor.set(ControlMode.PercentOutput, -fullSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, -fullSpeed);
+            secondELevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
         }
     }
 }

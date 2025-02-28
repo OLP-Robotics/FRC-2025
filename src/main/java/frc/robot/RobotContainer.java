@@ -32,7 +32,9 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     /* Co_Driver Buttons */
     private final JoystickButton controlFunnel = new JoystickButton(co_driver, XboxController.Button.kX.value);
+    private final JoystickButton revreseFunnel = new JoystickButton(co_driver, XboxController.Button.kB.value);
     private final JoystickButton controlIntake = new JoystickButton(co_driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton reverseIntake = new JoystickButton(co_driver, XboxController.Button.kLeftBumper.value);
     // private final JoystickButton controlIntake2 = new JoystickButton(co_driver, XboxController.Axis.kLeftTrigger.value);
 
 
@@ -62,14 +64,16 @@ public class RobotContainer {
         s_Funnel.setDefaultCommand(
             new TeleopFunnel(
                 s_Funnel,
-                () -> controlFunnel.getAsBoolean()
+                () -> controlFunnel.getAsBoolean(),
+                () -> revreseFunnel.getAsBoolean()
             )
         );
 
         s_Arm.setDefaultCommand(
             new TeleopArm(
              s_Arm,
-                () -> controlIntake.getAsBoolean()
+                () -> controlIntake.getAsBoolean(),
+                () -> reverseIntake.getAsBoolean()
             )
         );
 

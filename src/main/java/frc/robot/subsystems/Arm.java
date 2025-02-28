@@ -11,11 +11,13 @@ public class Arm extends SubsystemBase {
     private double fullSpeed = -1;
     private double halfSpeed = -0.5;
 
-    public void activate(boolean kRightBumper) {
+    public void activate(boolean kRightBumper, boolean kLeftBumper) {
         if (kRightBumper) {
             armMotor.set(ControlMode.PercentOutput, halfSpeed);
-        } else if (!kRightBumper) {
+        } else if (!kRightBumper && !kLeftBumper) {
             armMotor.set(ControlMode.PercentOutput, 0);
+        } else if (kLeftBumper) {
+            armMotor.set(ControlMode.PercentOutput, -halfSpeed);
         }
     }
 }
