@@ -1,23 +1,20 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Funnel extends SubsystemBase {
-    private final TalonSRX firstFunnelMotor = new TalonSRX(0);
-    private final TalonSRX secondFunnelMotor = new TalonSRX(1);
+    private final VictorSPX funnelMotor = new VictorSPX(23);
     
     private double fullSpeed = 1;
 
     public void activate(boolean xButtonPressed) {
         if (xButtonPressed) {
-            firstFunnelMotor.set(ControlMode.PercentOutput, fullSpeed);
-            secondFunnelMotor.set(ControlMode.PercentOutput, fullSpeed);
+            funnelMotor.set(ControlMode.PercentOutput, -fullSpeed);
         } else if (!xButtonPressed) {
-            firstFunnelMotor.set(ControlMode.PercentOutput, 0);
-            secondFunnelMotor.set(ControlMode.PercentOutput, 0);
+            funnelMotor.set(ControlMode.PercentOutput, 0);
         }
     }
 }

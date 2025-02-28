@@ -32,7 +32,7 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     /* Co_Driver Buttons */
     private final JoystickButton controlFunnel = new JoystickButton(co_driver, XboxController.Button.kX.value);
-    private final JoystickButton controlIntake = new JoystickButton(co_driver, XboxController.Axis.kRightTrigger.value);
+    private final JoystickButton controlIntake = new JoystickButton(co_driver, XboxController.Button.kRightBumper.value);
     // private final JoystickButton controlIntake2 = new JoystickButton(co_driver, XboxController.Axis.kLeftTrigger.value);
 
 
