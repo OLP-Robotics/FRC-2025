@@ -30,6 +30,7 @@ public class RobotContainer {
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    
     /* Co_Driver Buttons */
     private final JoystickButton controlFunnel = new JoystickButton(co_driver, XboxController.Button.kX.value);
     private final JoystickButton revreseFunnel = new JoystickButton(co_driver, XboxController.Button.kB.value);
@@ -40,6 +41,8 @@ public class RobotContainer {
 
     /* Co_Driver Controls */
     private final int controlElevator = XboxController.Axis.kLeftY.value;
+    private final int controlAlgae = XboxController.Axis.kRightY.value;
+
 
 
     /* Subsystems */
@@ -47,6 +50,7 @@ public class RobotContainer {
     private final Funnel s_Funnel = new Funnel();
     private final Arm s_Arm = new Arm();
     private final Elevator s_Elevator = new Elevator();
+    private final Algae s_Algae = new Algae();
 
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -84,6 +88,12 @@ public class RobotContainer {
             )
         );
 
+        s_Algae.setDefaultCommand(
+            new TeleopAlgae(
+            s_Algae,
+            () -> co_driver.getRawAxis(controlAlgae)
+            )
+        );
 
         // Configure the button bindings
         configureButtonBindings();

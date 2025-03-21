@@ -11,26 +11,18 @@ public class Elevator extends SubsystemBase {
     private final TalonSRX secondELevatorMotor = new TalonSRX(21);
     private DigitalInput topHeightLimitSwitch = new DigitalInput(0);
 
-    
-    private double fullSpeed = 1;
-    private double halfSpeed = -0.5;
-
     public void activate(double kLeftY) {
-        if (kLeftY > 0.5 && !topHeightLimitSwitch.get()) {
-            firstElevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, -fullSpeed);
-        } else if (kLeftY > 0 && kLeftY <= 0.5 && !topHeightLimitSwitch.get()) {
-            firstElevatorMotor.set(ControlMode.PercentOutput, halfSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, -halfSpeed);
-        } else if (kLeftY == 0) {
+        // on joystick, positive is down
+        if (kLeftY > 0) {
+            firstElevatorMotor.set(ControlMode.PercentOutput, -kLeftY);
+            secondELevatorMotor.set(ControlMode.PercentOutput, kLeftY);
+        // on joystick, negative is up  
+        } else if (kLeftY < 0 && (topHeightLimitSwitch.get())) { 
+            firstElevatorMotor.set(ControlMode.PercentOutput, -kLeftY);
+            secondELevatorMotor.set(ControlMode.PercentOutput, kLeftY);
+        } else {
             firstElevatorMotor.set(ControlMode.PercentOutput, 0);
             secondELevatorMotor.set(ControlMode.PercentOutput, 0);
-        } else if (kLeftY < 0 && kLeftY >= -0.5) {
-            firstElevatorMotor.set(ControlMode.PercentOutput, -halfSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, halfSpeed);
-        } else if (kLeftY > -1 && kLeftY < -0.5) {
-            firstElevatorMotor.set(ControlMode.PercentOutput, -fullSpeed);
-            secondELevatorMotor.set(ControlMode.PercentOutput, fullSpeed);
         }
     }
 }

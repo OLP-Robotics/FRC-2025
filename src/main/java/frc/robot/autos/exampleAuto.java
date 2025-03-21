@@ -23,18 +23,19 @@ public class exampleAuto extends SequentialCommandGroup {
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
                     Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
-                .setKinematics(Constants.Swerve.swerveKinematics);
+                //.setReversed() allows the user to go in the negative direction...
+                .setKinematics(Constants.Swerve.swerveKinematics).setReversed(true);
 
         // An example trajectory to follow.  All units in meters.
         Trajectory exampleTrajectory =
             TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
                 new Pose2d(0, 0, new Rotation2d(0)),
-                // Pass through these two interior waypoints, making an 's' curve path
-                List.of(new Translation2d(1, 0), new Translation2d(2, 0)),
-                // End 3 meters straight ahead of where we started, facing forward
-                new Pose2d(3, 0, new Rotation2d(0)),
-                config);
+                // Pass through these two interior waypoints, making a straight line backwards
+                List.of(new Translation2d(-1, 0), new Translation2d(-2, 0)),
+                // End 3 meters behind of where we started, facing forward
+                new Pose2d(-3, 0, new Rotation2d(0)),
+                config);        
 
         var thetaController =
             new ProfiledPIDController(
@@ -51,7 +52,7 @@ public class exampleAuto extends SequentialCommandGroup {
                 thetaController,
                 s_Swerve::setModuleStates,
                 s_Swerve);
-
+        
 
         addCommands(
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
