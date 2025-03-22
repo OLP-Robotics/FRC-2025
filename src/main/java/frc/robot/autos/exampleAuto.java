@@ -1,7 +1,11 @@
 package frc.robot.autos;
 
 import frc.robot.Constants;
+import frc.robot.commands.AutoElevator;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Swerve;
+import edu.wpi.first.wpilibj.Timer;
 
 import java.util.List;
 
@@ -18,7 +22,10 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class exampleAuto extends SequentialCommandGroup {
-    public exampleAuto(Swerve s_Swerve){
+    private final Timer moveTimer = new Timer();
+
+    public exampleAuto(Swerve s_Swerve, Elevator s_Elevator, Arm s_Arm){
+        moveTimer.start();
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -53,10 +60,13 @@ public class exampleAuto extends SequentialCommandGroup {
                 s_Swerve::setModuleStates,
                 s_Swerve);
         
+        AutoElevator autoScoreCommand =
+            new AutoElevator(s_Elevator, s_Arm, moveTimer);
 
         addCommands(
             new InstantCommand(() -> s_Swerve.setPose(exampleTrajectory.getInitialPose())),
             swerveControllerCommand
+            // autoScoreCommand
         );
     }
 }
